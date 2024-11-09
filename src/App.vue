@@ -2,13 +2,14 @@
 import { reactive, toRaw } from 'vue';
 import type { UnwrapRef } from 'vue';
 
-let tg = window.Telegram.WebApp;
+let tg: any = window.Telegram.WebApp;
 
 tg.expand();
 
 tg.MainButton.text = "Отправить";
 tg.MainButton.show()
 
+// @ts-ignore
 Telegram.WebApp.onEvent('mainButtonClicked', () => {
   const formData = JSON.stringify(toRaw(formState))
   tg.sendData(formData);
